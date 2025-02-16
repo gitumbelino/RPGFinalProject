@@ -4,7 +4,7 @@ public abstract class Hero extends Entity {
     private int level;
     private int gold;
     private MainWeapon weapon;
-    private ArrayList<Consumable> inventory;
+    private ArrayList<HeroItem> inventory;
 
     // Constructor
     public Hero(String name, int maxHp, int strength, int level, int gold) {
@@ -32,12 +32,12 @@ public abstract class Hero extends Entity {
     }
 
     // Inventory management
-    public void addToInventory(Consumable item) {
+    public void addToInventory(HeroItem item) {
         inventory.add(item);
         System.out.println(item.getName() + " added to inventory");
     }
 
-    public ArrayList<Consumable> getInventory() {
+    public ArrayList<HeroItem> getInventory() {
         return inventory;
     }
 
@@ -80,7 +80,7 @@ public abstract class Hero extends Entity {
         System.out.println("Inventory items: " + inventory.size());
     }
 
-    // Add these to Hero class
+    // Strength management
     public void increaseStrength(int amount) {
         setStrength(getStrength() + amount);
         System.out.println("Strength increased by " + amount + "!");

@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+
 
 public class Game {
     private Scanner scanner = new Scanner(System.in);
@@ -185,11 +187,11 @@ public class Game {
 
     // Potion usage handling
     private void usePotion(Hero hero) {
-        ArrayList<Consumable> inventory = hero.getInventory();
+        ArrayList<HeroItem> inventory = hero.getInventory();
         ArrayList<Potion> potions = new ArrayList<>();
 
         // Find all potions in inventory
-        for (Consumable item : inventory) {
+        for (HeroItem item : inventory) {
             if (item instanceof Potion) {
                 potions.add((Potion) item);
             }
@@ -262,7 +264,7 @@ public class Game {
     }
 
     private boolean hasJobOffer(Hero hero) {
-        for(Consumable item : hero.getInventory()) {
+        for(HeroItem item : hero.getInventory()) {
             if(item instanceof JobOffer) {
                 return true;
             }
@@ -284,7 +286,7 @@ public class Game {
     }
 
     private JobOffer findJobOffer(Hero hero) {
-        for(Consumable item : hero.getInventory()) {
+        for(HeroItem item : hero.getInventory()) {
             if(item instanceof JobOffer) {
                 return (JobOffer) item;
             }

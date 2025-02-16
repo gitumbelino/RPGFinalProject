@@ -12,13 +12,22 @@ abstract class Entity {
     }
 
     public String getName() { return name; }
-
     public int getMaxHp() { return maxHp; }
-
     public int getHp() { return hp; }
-
     public int getStrength() { return strength; }
 
+    // Add these three methods
+    public void reduceHp(int amount) {
+        this.hp = Math.max(0, this.hp - amount);
+    }
+
+    public void increaseHp(int amount) {
+        this.hp = Math.min(maxHp, this.hp + amount);
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
 
     public void checkStatus() {
         System.out.println("Name: " + name);

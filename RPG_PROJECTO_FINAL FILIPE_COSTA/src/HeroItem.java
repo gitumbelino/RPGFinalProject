@@ -6,7 +6,7 @@
 //item.
 //o Desenvolva também o metodo mostrarDetalhes.
 
-
+import java.util.ArrayList;
 
 abstract class HeroItem {
     protected String name;

@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class Vendor extends NPC {
     private ArrayList<HeroItem> shop;
     private Random rand = new Random();
     private VendorType type;
+
 
     public enum VendorType {
         COFFEE_SHOP("Need a coding boost? I've got the strongest coffee in tech!"),
@@ -60,6 +62,25 @@ public class Vendor extends NPC {
         }
     }
 
+    private ArrayList<HeroItem> getRandomItems(int count) {
+        ArrayList<HeroItem> displayItems = new ArrayList<>();
+
+        // If shop has less items than requested, return all
+        if (shop.size() <= count) {
+            return new ArrayList<>(shop);
+        }
+
+        // Get random items
+        while (displayItems.size() < count) {
+            int index = rand.nextInt(shop.size());
+            HeroItem item = shop.get(index);
+            if (!displayItems.contains(item)) {
+                displayItems.add(item);
+            }
+        }
+        return displayItems;
+    }
+
     private void addWeaponsToShop(double chance) {
         for(MainWeapon weapon : ItemFactory.createWeapons()) {
             if(rand.nextDouble() < chance) {
@@ -99,4 +120,26 @@ public class Vendor extends NPC {
     }
 
     // Your existing getRandomItems and sell methods remain the same...
+    public void sell(Hero buyer, int itemIndex) {
+        if (itemIndex < 0 || itemIndex >= shop.size()) {
+            System.out.println("Invalid item selection!");
+            return;
+        }
+
+        HeroItem item = shop.get(itemIndex);
+
+        if (buyer.getGold() >= item.getPrice()) {
+            if (item instanceof MainWeapon) {
+                buyer.setWeapon((MainWeapon) item);
+            } else if (item instanceof Consumable) {
+                buyer.addToInventory((Consumable) item);
+            }
+
+            buyer.reduceGold(item.getPrice());
+            System.out.println("Purchased " + item.getName() + "!");
+        } else {
+            System.out.println("Not enough gold!");
+        }
+    }
+
 }
