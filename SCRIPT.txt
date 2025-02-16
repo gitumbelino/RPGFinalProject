@@ -1,0 +1,81 @@
+
+	
+	
+	
+Core Game Entities
+
+
+	Heroes (Player characters)
+	
+		Bootcamp Graduate (Our "Mage") - 
+		Armed with fresh knowledge but facing the "5 years experience for entry level" paradox
+		
+		Career Changer (Our "Knight") - 
+		Defending against the "but your experience is in a different field" attacks
+
+		Self-Taught Developer (Our "Archer") - 
+		Fighting from a distance with "no formal education" debuffs
+	
+	NPCs (Enemies) Enemies/Bosses:
+
+		The LinkedIn Influencer - 
+		Attacks with "Agree?" and motivational quotes
+		
+		The ATS Bot - 
+		A merciless filter that rejects perfectly good candidates
+		
+		The Ghosting Recruiter - 
+		Appears friendly but vanishes without trace
+		
+		The "we're like a family" Startup CEO
+		
+		The "Unpaid Experience" Intern Manager
+
+	
+	Vendor
+	
+		The Vendor could be "The Career Coach" or "The Professional Development Guru" who sells items like:
+
+		Resume Templates
+		LinkedIn Premium Subscriptions
+		Interview Prep Courses
+		"Guaranteed Success" Programs
+		Networking Event Tickets
+
+
+		We could make them a satirical character who:
+
+			Always speaks in LinkedIn-style motivational quotes
+			Tries to upsell everything ("But wait, there's more!")
+			Claims to have "secret insider knowledge" of the industry
+			Uses buzzwords excessively
+			Promises unrealistic results ("Learn to code in 24 hours!")
+
+		Names for the vendor could be:
+
+			Gary Growth-Mindset
+			Linda LinkedIn
+			Steve Synergy
+			Coach Crypto (who pivoted to career coaching after the crash)
+			The "10x Career" Guru
+		
+
+
+Items System
+
+
+	Main Weapons
+	Consumables
+	Potions
+
+
+Game Structure
+
+	Rooms/Areas
+	Combat System
+	Shop System
+	
+	
+	
+	
+	
