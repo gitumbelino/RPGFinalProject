@@ -1,12 +1,17 @@
 import java.util.ArrayList;
 
+//A classe Heroi deverá ter atributos:
+// nível (int)
+// ouro (int)
+// armaPrincipal (ArmaPrincipal)
+// ArrayList<Consumivel> inventario
+
 public abstract class Hero extends Entity {
     private int level;
     private int gold;
     private MainWeapon weapon;
     private ArrayList<HeroItem> inventory;
 
-    // Constructor
     public Hero(String name, int maxHp, int strength, int level, int gold) {
         super(name, maxHp, strength);
         this.level = level;
@@ -14,10 +19,13 @@ public abstract class Hero extends Entity {
         this.inventory = new ArrayList<>();
     }
 
-    // Abstract method that each hero type must implement
+    // Desenvolva o metodo abstrato atacar: recebe um NPC como argumento, esta classe deverá ter uma
+    //implementação diferente em cada uma das suas subclasses, no entanto, a finalidade é a mesma,
+    //confrontar o herói com um NPC numa luta até que um fique sem vida.
+
     public abstract boolean attack(NPC enemy);
 
-    // Weapon management
+    // para gerir a troca de arma
     public void setWeapon(MainWeapon newWeapon) {
         if (this.weapon != null) {
             System.out.println("Replaced " + this.weapon.getName() + " with " + newWeapon.getName());

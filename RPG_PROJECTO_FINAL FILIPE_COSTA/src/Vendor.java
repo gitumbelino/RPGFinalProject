@@ -1,28 +1,14 @@
 import java.util.ArrayList;
 import java.util.Random;
+import Enums.VendorType;
 
 
 public class Vendor extends NPC {
     private ArrayList<HeroItem> shop;
-    private Random rand = new Random();
+    private Random rnd = new Random();
     private VendorType type;
 
 
-    public enum VendorType {
-        COFFEE_SHOP("Need a coding boost? I've got the strongest coffee in tech!"),
-        TECH_STORE("Latest tech tools and gadgets! Perfect for your next interview!"),
-        BOOTCAMP_VENDOR("Get your learning resources here! Special discount for career changers!");
-
-        private final String greeting;
-
-        VendorType(String greeting) {
-            this.greeting = greeting;
-        }
-
-        public String getGreeting() {
-            return greeting;
-        }
-    }
 
     public Vendor(String name, int maxHp, int strength, int gold, VendorType type) {
         super(name, maxHp, strength, gold);
@@ -56,7 +42,7 @@ public class Vendor extends NPC {
 
     private void addPotionsToShop(double chance) {
         for(Potion potion : ItemFactory.createPotions()) {
-            if(rand.nextDouble() < chance) {
+            if(rnd.nextDouble() < chance) {
                 shop.add(potion);
             }
         }
@@ -72,7 +58,7 @@ public class Vendor extends NPC {
 
         // Get random items
         while (displayItems.size() < count) {
-            int index = rand.nextInt(shop.size());
+            int index = rnd.nextInt(shop.size());
             HeroItem item = shop.get(index);
             if (!displayItems.contains(item)) {
                 displayItems.add(item);
@@ -83,7 +69,7 @@ public class Vendor extends NPC {
 
     private void addWeaponsToShop(double chance) {
         for(MainWeapon weapon : ItemFactory.createWeapons()) {
-            if(rand.nextDouble() < chance) {
+            if(rnd.nextDouble() < chance) {
                 shop.add(weapon);
             }
         }
@@ -91,7 +77,7 @@ public class Vendor extends NPC {
 
     private void addCombatItemsToShop(double chance) {
         for(CombatConsumable item : ItemFactory.createCombatItems()) {
-            if(rand.nextDouble() < chance) {
+            if(rnd.nextDouble() < chance) {
                 shop.add(item);
             }
         }

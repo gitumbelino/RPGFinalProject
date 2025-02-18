@@ -1,4 +1,5 @@
 import java.util.Random;
+import Enums.VendorType;
 
 public class GameMap {
     private Room startingRoom;
@@ -38,7 +39,7 @@ public class GameMap {
         // Create all rooms
         Room linkedInLobby = new Room("LinkedIn Lobby",
                 "A vast hall filled with professionals posting motivational quotes.");
-        linkedInLobby.setVendor(new Vendor("LinkedIn Premium Seller", 50, 10, 100, Vendor.VendorType.TECH_STORE));
+        linkedInLobby.setVendor(new Vendor("LinkedIn Premium Seller", 50, 10, 100, VendorType.TECH_STORE));
 
         Room technicalRoom = new Room("Technical Interview Chamber",
                 "Whiteboards cover every wall. The air is thick with algorithm anxiety.");
@@ -50,7 +51,7 @@ public class GameMap {
 
         Room coffeeRoom = new Room("Coffee Break Room",
                 "A place to rest and prepare. The coffee machine looks inviting.");
-        coffeeRoom.setVendor(new Vendor("Caffeinated Coder", 50, 10, 100, Vendor.VendorType.COFFEE_SHOP));
+        coffeeRoom.setVendor(new Vendor("Caffeinated Coder", 50, 10, 100, VendorType.COFFEE_SHOP));
 
         Room zoomRoom = new Room("Remote Interview Portal",
                 "A virtual space where 'You're on mute' echoes eternally.");
@@ -62,7 +63,7 @@ public class GameMap {
 
         Room bootcampRoom = new Room("Bootcamp Corner",
                 "A place filled with intensive learning resources and quick tutorials.");
-        bootcampRoom.setVendor(new Vendor("Bootcamp Mentor", 50, 10, 100, Vendor.VendorType.BOOTCAMP_VENDOR));
+        bootcampRoom.setVendor(new Vendor("Bootcamp Mentor", 50, 10, 100, VendorType.BOOTCAMP_VENDOR));
 
         Room finalRoom = new Room("Final Interview",
                 "The last challenge before potentially getting an offer!");

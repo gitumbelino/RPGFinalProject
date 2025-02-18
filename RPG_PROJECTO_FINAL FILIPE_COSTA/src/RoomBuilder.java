@@ -1,10 +1,12 @@
+import Enums.VendorType;
+
 public class RoomBuilder {
     public static Room createStartingRoom() {
         Room room = new Room(
                 "LinkedIn Lobby",
                 "A vast hall filled with professionals posting motivational quotes. A recruiter bot scans the area."
         );
-        room.setVendor(new Vendor("LinkedIn Premium Seller", 50, 10, 100, Vendor.VendorType.TECH_STORE));
+        room.setVendor(new Vendor("LinkedIn Premium Seller", 50, 10, 100, VendorType.TECH_STORE));
         return room;
     }
 
@@ -22,7 +24,7 @@ public class RoomBuilder {
                 "Startup Valley",
                 "'We're like a family here!' echoes through the ping-pong filled space."
         );
-        room.setVendor(new Vendor("Coffee-Driven Developer", 50, 10, 100, Vendor.VendorType.COFFEE_SHOP));
+        room.setVendor(new Vendor("Coffee-Driven Developer", 50, 10, 100, VendorType.COFFEE_SHOP));
         return room;
     }
 
@@ -31,7 +33,7 @@ public class RoomBuilder {
                 "Remote Interview Void",
                 "'You're muted!' shouts someone in the distance. Connection seems unstable."
         );
-        room.setVendor(new Vendor("Digital Tools Dealer", 50, 10, 100, Vendor.VendorType.TECH_STORE));
+        room.setVendor(new Vendor("Digital Tools Dealer", 50, 10, 100, VendorType.TECH_STORE));
         return room;
     }
 
@@ -49,7 +51,7 @@ public class RoomBuilder {
                 "Bootcamp Corner",
                 "A place filled with intensive learning resources and quick tutorials."
         );
-        room.setVendor(new Vendor("Bootcamp Mentor", 50, 10, 100, Vendor.VendorType.BOOTCAMP_VENDOR));
+        room.setVendor(new Vendor("Bootcamp Mentor", 50, 10, 100, VendorType.BOOTCAMP_VENDOR));
         return room;
     }
 }

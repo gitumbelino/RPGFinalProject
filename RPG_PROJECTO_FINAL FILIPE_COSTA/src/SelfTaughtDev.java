@@ -44,6 +44,12 @@ public class SelfTaughtDev extends Hero {
                         System.out.println("Merge conflict! The attack backfires!");
                         this.reduceHp(damage/2);  // Damage self on failure
                     }
+
+                    // Status display after hero's attack
+                    System.out.println("\nHealth after enemy attack:");
+                    this.showHp();
+                    enemy.showHp();
+
                     break;
 
                 case 2: // 3 AM Debugging - High damage but with a cost
@@ -59,6 +65,12 @@ public class SelfTaughtDev extends Hero {
                         System.out.println("You're too tired for another debugging session!");
                         continue;
                     }
+
+                    // Status display after hero's attack
+                    System.out.println("\nHealth after enemy attack:");
+                    this.showHp();
+                    enemy.showHp();
+
                     break;
 
                 case 3: // YouTube Tutorial - Random tutorial effectiveness
@@ -82,6 +94,12 @@ public class SelfTaughtDev extends Hero {
                                 break;
                         }
                     }
+
+                    // Status display after hero's attack
+                    System.out.println("\nHealth after enemy attack:");
+                    this.showHp();
+                    enemy.showHp();
+
                     break;
 
                 default:  // Invalid input handler
@@ -94,6 +112,12 @@ public class SelfTaughtDev extends Hero {
                 int enemyDamage = enemy.getStrength();
                 this.reduceHp(enemyDamage);
                 System.out.println(enemy.getName() + " questions your self-taught credentials for " + enemyDamage + " damage!");
+
+                // Status display after enemy's attack
+                System.out.println("\nHealth after enemy attack:");
+                this.showHp();
+                enemy.showHp();
+
             }
         }
 

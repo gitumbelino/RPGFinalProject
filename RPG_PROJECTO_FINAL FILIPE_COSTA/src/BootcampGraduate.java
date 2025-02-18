@@ -1,97 +1,148 @@
 import java.util.Random;   // For random numbers in AI attack
 import java.util.Scanner;  // For reading player input
 
+
+/**
+ * há 3 tipos de herói possíveis:
+ * bootcamp graduate
+ * career changer
+ * Self Taught Dev
+ */
+
 public class BootcampGraduate extends Hero {
 
-    // Constructor: initializes a new BootcampGraduate with basic stats
+    /**
+     * Construtor para criar o Bootcamp Graduate.
+     *
+     * @param name     Nome do herói
+     * @param maxHp    Vida máxima inicial
+     * @param strength Força inicial
+     * @param level    Nível inicial
+     * @param gold     Quantidade inicial de ouro
+     */
+
     public BootcampGraduate(String name, int maxHp, int strength, int level, int gold) {
-        super(name, maxHp, strength, level, gold);  // Calls Hero constructor with these values
+        super(name, maxHp, strength, level, gold);
     }
 
-    // Main combat method - returns true if hero wins, false if they lose
+    /**
+     * metodo de ataque do BootcampGraduate
+     * três tipos de ataques diferentes:
+     * 1. Stack Overflow Copy-Paste (ataque normal)
+     * 2. Framework Magic (ataque especial, uso único)
+     * 3. AI Prompt Engineer (ataque com item, requer inventário)
+     *
+     * @param enemy O NPC inimigo a ser atacado
+     * @return true se o herói vencer, false se perder
+     */
+
     @Override
     public boolean attack(NPC enemy) {
-        Scanner scanner = new Scanner(System.in);  // Creates input reader
-        boolean specialAttackUsed = false;         // Tracks if special attack was used (can only use once)
+        Scanner scanner = new Scanner(System.in);
+        boolean specialAttackUsed = false;
 
-        // Combat continues while both fighters are alive
+        // o combate dá-se até um deles perder
         while (this.getHp() > 0 && enemy.getHp() > 0) {
-            // Display combat menu
+
+            // Menu do combate, onde se faz a escolha do ataque e se pode aceder ao inventário.
             System.out.println("\nChoose your attack:");
             System.out.println("1. Stack Overflow Copy-Paste");
             if (!specialAttackUsed) {
-                System.out.println("2. Framework Magic");    // Only show if not used yet
+                System.out.println("2. Framework Magic");
             }
             if (!getInventory().isEmpty()) {
-                System.out.println("3. AI Prompt Engineer"); // Only show if have items
+                System.out.println("3. AI Prompt Engineer");
             }
-
-            // Get player's attack choice
-            System.out.print("Enter your choice: ");
+            System.out.print("\nEnter your choice: ");
             int choice = scanner.nextInt();
-
-            // Handle different attack types
             switch (choice) {
-                case 1: // Basic attack - Stack Overflow Copy-Paste
-                    int damage = this.getStrength();        // Base damage from strength
+                case 1:
+                    // Ataque normal - Stack Overflow Copy-Paste
+                    int damage = this.getStrength();
                     if (this.getWeapon() != null) {
-                        damage += this.getWeapon().getAttack();  // Add weapon damage if have weapon
+                        damage += this.getWeapon().getAttack();
                     }
-                    enemy.reduceHp(damage);                 // Apply damage to enemy
-                    // Show attack messages
+                    enemy.reduceHp(damage);
+
                     System.out.println("You frantically search Stack Overflow...");
                     System.out.println("Found a solution from 2014!");
                     System.out.println("It somehow works! Dealt " + damage + " damage!");
+
+                    // Status display after hero's attack
+                    System.out.println("\nHealth after enemy attack:");
+                    this.showHp();
+                    enemy.showHp();
                     break;
 
-                case 2: // Special attack - Framework Magic
-                    if (!specialAttackUsed) {              // Check if available
-                        int specialDamage = this.getStrength() * 2;  // Double damage
+                case 2:
+                    // Ataque especial - Framework Magic
+                    if (!specialAttackUsed) {
+                        int specialDamage = this.getStrength() * 2;
                         enemy.reduceHp(specialDamage);
-                        specialAttackUsed = true;          // Mark as used
+                        specialAttackUsed = true;
                         System.out.println("You summon the power of the latest JavaScript framework!");
                         System.out.println("'But can it scale?' You dealt " + specialDamage + " damage!");
+
+                        // Status display after hero's special attack
+                        System.out.println("\nHealth after enemy attack:");
+                        this.showHp();
+                        enemy.showHp();
+
                     } else {
                         System.out.println("You can't keep learning new frameworks - you're already at your limit!");
-                        continue;                          // Skip back to attack choice
+                        continue;
                     }
                     break;
 
-                case 3: // Item attack - AI Prompt Engineer
+                case 3:
+                    // Ataque Consumível - AI Prompt Engineer
+                    //com 3 niveis de ataque e efeito, sorteados aleatoriamente ao declarar o ataque:
+                    //com sucesso, da todo o dano
+                    //mais ou menos, mais para menos :D, dano muito reduzido
+                    //dá uam soluçao errada e dá dano ao proprio heroi
+
                     if (!getInventory().isEmpty()) {
                         Random rand = new Random();
-                        int aiRoll = rand.nextInt(3);      // Random number 0-2 for different outcomes
-                        switch(aiRoll) {
-                            case 0:  // Great success
+                        int aiRoll = rand.nextInt(3);
+                        switch (aiRoll) {
+                            case 0:
                                 System.out.println("The AI generates perfect, production-ready code!");
                                 enemy.reduceHp(50);
                                 break;
-                            case 1:  // Minor success
+                            case 1:
                                 System.out.println("AI: 'I apologize, but I don't write code. Here's a poem instead.'");
                                 enemy.reduceHp(5);
                                 break;
-                            case 2:  // Backfire
-                                System.out.println("AI hallucinates and gives you Assembly code instead of JavaScript");
-                                this.reduceHp(10);         // Damage self instead
+                            case 2:
+                                System.out.println("AI hallucinates and gives you Python instead of JavaScript");
+                                this.reduceHp(10);
                                 break;
                         }
+
+                        // Status display after AI attack (regardless of outcome)
+                        System.out.println("\nHealth after enemy attack:");
+                        this.showHp();
+                        enemy.showHp();
                     }
                     break;
 
-                default:  // Invalid choice handler
+                default:
                     System.out.println("Invalid choice! Try again.");
                     continue;
             }
 
-            // Enemy's turn to attack (if still alive)
             if (enemy.getHp() > 0) {
                 int enemyDamage = enemy.getStrength();
                 this.reduceHp(enemyDamage);
                 System.out.println(enemy.getName() + " counter-attacks for " + enemyDamage + " damage!");
+
+                // Status display after enemy's attack
+                System.out.println("\nHealth after enemy attack:");
+                this.showHp();
+                enemy.showHp();
             }
         }
 
-        // Return true if hero survived (hp > 0), false if died
         return this.getHp() > 0;
     }
 }

@@ -134,6 +134,17 @@ public class Game {
 
         if(won) {
             System.out.println("You defeated " + enemy.getName() + "!");
+
+            // Adiciona recompensas ao vencer o combate
+            hero.levelUp(); // Aumenta o nível
+            hero.increaseHp(10); // Adiciona 10 pontos de vida
+            hero.increaseStrength(1); // Aumenta 1 ponto de força
+            int enemyGold = enemy.getGold();
+            hero.addGold(enemyGold); // Obtém o ouro do inimigo
+            System.out.println("You leveled up!");
+            System.out.println("Gained 10 HP and 1 strength point!");
+            System.out.println("Looted " + enemyGold + " gold from the enemy!");
+
             currentRoom.setEnemy(null);
 
             // After winning combat, check for job offer
@@ -196,6 +207,29 @@ public class Game {
                 potions.add((Potion) item);
             }
         }
+
+        if (potions.isEmpty()) {
+            System.out.println("You don't have any potions!");
+            return;
+        }
+
+        // Display potions
+        System.out.println("\nYour potions:");
+        for (int i = 0; i < potions.size(); i++) {
+            System.out.print((i+1) + ". ");
+            potions.get(i).showDetails();
+        }
+
+        // Select potion
+        System.out.print("Choose potion (0 to cancel): ");
+        int choice = scanner.nextInt();
+
+        if (choice > 0 && choice <= potions.size()) {
+            Potion selected = potions.get(choice-1);
+            selected.use(hero);
+            inventory.remove(selected);
+        }
+
     }
 
     // Helper method for character creation
@@ -272,7 +306,6 @@ public class Game {
         return false;
     }
 
-
     private boolean checkWinCondition(Hero hero) {
         if(hasJobOffer(hero)) {
             System.out.println("\n=== CONGRATULATIONS! ===");
@@ -293,7 +326,4 @@ public class Game {
         }
         return null;
     }
-
-
-
 }

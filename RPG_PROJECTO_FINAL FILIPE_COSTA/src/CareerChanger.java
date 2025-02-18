@@ -1,22 +1,55 @@
 import java.util.Random;   // For random effects in attacks
 import java.util.Scanner;  // For reading player input
 
+
+/**
+ * há 3 tipos de herói possíveis:
+ * bootcamp graduate
+ * career changer
+ * Self Taught Dev
+ */
+
+
+
+
 public class CareerChanger extends Hero {
+
+    /**
+     * @param name Nome
+     * @param maxHp Vida máxima inicial
+     * @param strength Força inicial
+     * @param level Nível inicial
+     * @param gold Quantidade inicial de ouro
+     */
 
     // Constructor: creates a CareerChanger with starting stats
     public CareerChanger(String name, int maxHp, int strength, int level, int gold) {
         super(name, maxHp, strength, level, gold);  // Pass values to Hero constructor
     }
 
+
+    /**
+     * Metodo de ataque para o Career Changer.
+     * três tipos de ataques diferentes:
+     * 1. Soft Skills Slash (ataque normal)
+     * 2. Professional Network Strike (ataque especial, uso único)
+     * 3. LinkedIn Recommendation Blast (ataque com item, requer inventário)
+     *
+     * @param enemy O NPC inimigo a ser atacado
+     * @return true se o herói vencer, false se perder
+     */
+
+
+
     @Override
     public boolean attack(NPC enemy) {
-        Scanner scanner = new Scanner(System.in);         // For reading player choices
-        boolean specialAttackUsed = false;               // Track if network attack was used
-        Random rand = new Random();                      // For random attack effects
+        Scanner scanner = new Scanner(System.in);
+        boolean specialAttackUsed = false;
+        Random rand = new Random();
 
-        // Combat loop - continues while both fighter are alive
+
         while (this.getHp() > 0 && enemy.getHp() > 0) {
-            // Display combat menu
+
             System.out.println("\nChoose your attack:");
             System.out.println("1. Soft Skills Slash");
             if (!specialAttackUsed) {
@@ -27,7 +60,7 @@ public class CareerChanger extends Hero {
             }
 
             // Get player's choice
-            System.out.print("Enter your choice: ");
+            System.out.print("\nEnter your choice: ");
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -44,7 +77,15 @@ public class CareerChanger extends Hero {
                     if (charmed) {
                         System.out.println("The enemy is impressed by your communication skills!");
                         enemy.setStrength(enemy.getStrength() - 2);  // Reduce enemy strength
+
+
                     }
+
+                    // Status display after hero's attack
+                    System.out.println("\nHealth after enemy attack:");
+                    this.showHp();
+                    enemy.showHp();
+
                     break;
 
                 case 2: // Professional Network Strike - Special attack that also heals
@@ -61,6 +102,12 @@ public class CareerChanger extends Hero {
                         System.out.println("You've already used your network this battle!");
                         continue;                                    // Return to attack choice
                     }
+
+                    // Status display after hero's attack
+                    System.out.println("\nHealth after enemy attack:");
+                    this.showHp();
+                    enemy.showHp();
+
                     break;
 
                 case 3: // LinkedIn Recommendation Blast - Random recommendation effects
@@ -84,6 +131,10 @@ public class CareerChanger extends Hero {
                                 break;
                         }
                     }
+
+                    System.out.println("\nHealth after enemy attack:");
+                    this.showHp();
+                    enemy.showHp();
                     break;
 
                 default:  // Invalid choice handler
@@ -96,6 +147,12 @@ public class CareerChanger extends Hero {
                 int enemyDamage = enemy.getStrength();
                 this.reduceHp(enemyDamage);
                 System.out.println(enemy.getName() + " questions your lack of traditional CS degree for " + enemyDamage + " damage!");
+
+                // Status display after enemy's attack
+                System.out.println("\nHealth after enemy attack:");
+                this.showHp();
+                enemy.showHp();
+
             }
         }
 
