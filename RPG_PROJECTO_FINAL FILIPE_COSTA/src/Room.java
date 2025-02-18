@@ -37,7 +37,7 @@ public class Room {
         }
 
         if(vendor != null) {
-            System.out.println("A vendor is available for trading.");
+            System.out.println("A vendor approaches...");
         }
 
         if(!items.isEmpty()) {

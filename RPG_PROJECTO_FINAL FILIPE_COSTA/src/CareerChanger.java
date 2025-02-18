@@ -9,9 +9,6 @@ import java.util.Scanner;  // For reading player input
  * Self Taught Dev
  */
 
-
-
-
 public class CareerChanger extends Hero {
 
     /**
@@ -27,7 +24,6 @@ public class CareerChanger extends Hero {
         super(name, maxHp, strength, level, gold);  // Pass values to Hero constructor
     }
 
-
     /**
      * Metodo de ataque para o Career Changer.
      * três tipos de ataques diferentes:
@@ -39,14 +35,11 @@ public class CareerChanger extends Hero {
      * @return true se o herói vencer, false se perder
      */
 
-
-
     @Override
     public boolean attack(NPC enemy) {
         Scanner scanner = new Scanner(System.in);
         boolean specialAttackUsed = false;
         Random rand = new Random();
-
 
         while (this.getHp() > 0 && enemy.getHp() > 0) {
 
@@ -59,7 +52,6 @@ public class CareerChanger extends Hero {
                 System.out.println("3. LinkedIn Recommendation Blast"); // Only if have items
             }
 
-            // Get player's choice
             System.out.print("\nEnter your choice: ");
             int choice = scanner.nextInt();
 
@@ -81,14 +73,13 @@ public class CareerChanger extends Hero {
 
                     }
 
-                    // Status display after hero's attack
                     System.out.println("\nHealth after enemy attack:");
                     this.showHp();
                     enemy.showHp();
 
                     break;
 
-                case 2: // Professional Network Strike - Special attack that also heals
+                case 2: // Professional Network Strike, ataque especial que tbm cura
                     if (!specialAttackUsed) {
                         int specialDamage = this.getStrength() * 2;  // Double damage
                         enemy.reduceHp(specialDamage);
@@ -100,31 +91,30 @@ public class CareerChanger extends Hero {
                         System.out.println("Their mentorship heals you for " + healAmount + " HP!");
                     } else {
                         System.out.println("You've already used your network this battle!");
-                        continue;                                    // Return to attack choice
+                        continue;
                     }
 
-                    // Status display after hero's attack
                     System.out.println("\nHealth after enemy attack:");
                     this.showHp();
                     enemy.showHp();
 
                     break;
 
-                case 3: // LinkedIn Recommendation Blast - Random recommendation effects
+                case 3: // LinkedIn Recommendation Blast
                     if (!getInventory().isEmpty()) {
                         int recommendationRoll = rand.nextInt(3);   // Random 0-2 for effect
                         switch(recommendationRoll) {
-                            case 0:  // Best outcome - high damage
+                            case 0:  // Melhor Hipotese, dano maximo
                                 System.out.println("A former boss writes a glowing recommendation!");
                                 System.out.println("'Best career changer I've ever worked with!'");
                                 enemy.reduceHp(40);
                                 break;
-                            case 1:  // Worst outcome - low damage
+                            case 1:  // Pior Hipotese, dan minimo
                                 System.out.println("Someone endorsed you for Microsoft Word...");
                                 System.out.println("Well, it's something...");
                                 enemy.reduceHp(10);
                                 break;
-                            case 2:  // Medium outcome - average damage
+                            case 2:  // Hipotese média  - dano intermedio
                                 System.out.println("Your old colleague writes 'Great team player!'");
                                 System.out.println("Generic but effective!");
                                 enemy.reduceHp(25);
@@ -137,18 +127,18 @@ public class CareerChanger extends Hero {
                     enemy.showHp();
                     break;
 
-                default:  // Invalid choice handler
+                default:
                     System.out.println("Invalid choice! Try again.");
                     continue;
             }
 
-            // Enemy's turn to attack (if still alive)
+
             if (enemy.getHp() > 0) {
                 int enemyDamage = enemy.getStrength();
                 this.reduceHp(enemyDamage);
                 System.out.println(enemy.getName() + " questions your lack of traditional CS degree for " + enemyDamage + " damage!");
 
-                // Status display after enemy's attack
+
                 System.out.println("\nHealth after enemy attack:");
                 this.showHp();
                 enemy.showHp();
@@ -156,7 +146,6 @@ public class CareerChanger extends Hero {
             }
         }
 
-        // Return true if hero survived (hp > 0), false if died
         return this.getHp() > 0;
     }
 }

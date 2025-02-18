@@ -3,7 +3,7 @@ import Enums.VendorType;
 
 public class GameMap {
     private Room startingRoom;
-    private Random rand = new Random();
+    private Random rnd = new Random();
 
     public GameMap() {
         createAndConnectRooms();
@@ -19,7 +19,7 @@ public class GameMap {
         };
 
         return new NPC(
-                interviewers[rand.nextInt(interviewers.length)],
+                interviewers[rnd.nextInt(interviewers.length)],
                 120,  // HP
                 25,   // Strength
                 100   // Gold reward

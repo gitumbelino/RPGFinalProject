@@ -119,7 +119,6 @@ public class BootcampGraduate extends Hero {
                                 break;
                         }
 
-                        // Status display after AI attack (regardless of outcome)
                         System.out.println("\nHealth after enemy attack:");
                         this.showHp();
                         enemy.showHp();
@@ -136,9 +135,7 @@ public class BootcampGraduate extends Hero {
                 this.reduceHp(enemyDamage);
                 System.out.println(enemy.getName() + " counter-attacks for " + enemyDamage + " damage!");
 
-                // Status display after enemy's attack
                 System.out.println("\nHealth after enemy attack:");
-                this.showHp();
                 enemy.showHp();
             }
         }

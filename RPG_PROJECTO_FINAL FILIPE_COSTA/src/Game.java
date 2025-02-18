@@ -7,11 +7,13 @@ public class Game {
     private GameMap gameMap;
     private Room currentRoom;
 
+
     // Constructor initializes game map and starting room
     public Game() {
         this.gameMap = new GameMap();
         this.currentRoom = gameMap.getStartingRoom();
     }
+
 
     // Character creation method
     public Hero createCharacter() {
@@ -23,7 +25,7 @@ public class Game {
 
         System.out.print("Enter choice (1-3): ");
         int choice = scanner.nextInt();
-        scanner.nextLine(); // Clear buffer
+        scanner.nextLine();
 
         System.out.print("Enter character name: ");
         String name = scanner.nextLine();
@@ -39,7 +41,7 @@ public class Game {
         return createHeroFromChoices(choice, name, points, gold);
     }
 
-    // Change this method to accept Hero parameter
+
     private void moveToNewRoom(Hero hero) {
         ArrayList<Room> connections = currentRoom.getConnectedRooms();
 
@@ -292,6 +294,27 @@ public class Game {
 
     // Main method
     public static void main(String[] args) {
+        System.out.println("\n====================================");
+        System.out.println("»»»-----------JOB-HUNT!------------>");
+        System.out.println("====================================");
+        System.out.println("In a dystopian world where 'entry-level' requires 5 years of experience");
+        System.out.println("and recruiters have mastered the art of ghosting...");
+        System.out.println();
+        System.out.println("YOU are a brave soul attempting to break into the tech industry!");
+        System.out.println();
+        System.out.println("Navigate through the hazardous LinkedIn maze, survive technical");
+        System.out.println("interviews that question your existence, and endure algorithm");
+        System.out.println("challenges designed by sadistic senior developers.");
+        System.out.println();
+        System.out.println("Will you triumph over ATS systems and arbitrary hiring processes");
+        System.out.println("to obtain the mythical Job Offer?");
+        System.out.println();
+        System.out.println("Remember: It's not rejection, it's just 'not a culture fit'!");
+        System.out.println("====================================");
+        System.out.println("\nPress Enter to begin your journey...");
+
+        new Scanner(System.in).nextLine();
+
         Game game = new Game();
         Hero hero = game.createCharacter();
         game.startAdventure(hero);
